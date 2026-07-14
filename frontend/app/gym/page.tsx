@@ -22,9 +22,8 @@ export default function GymPage() {
     const fetchGymData = async () => {
       try {
         // Attempt to fetch from local FastAPI backend
-        const res = await fetch(
-          process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000/gym",
-        );
+        const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+        const res = await fetch(`${baseUrl}/gym`);
         if (!res.ok) {
           throw new Error(`Failed to fetch data. Status: ${res.status}`);
         }
